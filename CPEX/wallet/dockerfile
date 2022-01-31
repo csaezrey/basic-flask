@@ -1,0 +1,12 @@
+FROM postgres
+ENV export PYTHONPATH="etc/python3"
+ENV POSTGRES_PASSWORD docker
+ENV POSTGRES_DB CPEX
+COPY cpex.sql /docker-entrypoint-initdb.d/
+
+WORKDIR /app
+COPY requirements.txt /app/requirements.txt
+RUN apt-get update -y && \
+    apt install python3 -y &&\
+	apt install python3-pip -y &&\
+	pip3 install -r requirements.txt
