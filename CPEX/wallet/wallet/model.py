@@ -2,6 +2,7 @@ from app import db
 from flask import json
 import logging
 from wallet.messages import DATABASE_ERROR
+from sqlalchemy import exc
 
 class Wallet(db.Model):
     __table_args__ = {"schema":"cpex"}
@@ -50,6 +51,7 @@ def delete_wallet(id):
     try:
         Wallet.query.filter(Wallet.id == id).delete()
         db.session.commit()
+        return True
     except exc.SQLAlchemyError:
         logging.info(DATABASE_ERROR)
-
+        return False

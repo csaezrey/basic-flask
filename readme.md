@@ -15,19 +15,26 @@ docker build -t wallet .
 
 Para la ejecución usar el comando:
 ```
-docker run -i wallet
+docker run -i -p 5000:5000 -p 5432:5432 --name wallet-example wallet
 ```
 
 ## Python
-Para la ejecución de la APP, desde la carpeta CPEX\Wallet, utilizar el comando:
+Para la ejecución de la APP, desde la carpeta /app, utilizar el comando:
 ```
-python app.py
+python3 app.py
 ```
 
 ## Pruebas
 Desde la carpeta CPEX\Wallet, ejecutar el comando:
 ```
-python -m pytest
+python3 -m pytest
 ```
 
-Considerar que solo incluye 3 pruebas de ejemplo y no hay una [covertura de todo el código](https://pypi.org/project/pytest-cov/).
+### Covertura de código
+
+```
+python3 -m pytest --cov=/app -vv
+```
+
+Ejemplo:
+![Covertura](images/coverage.PNG) 
