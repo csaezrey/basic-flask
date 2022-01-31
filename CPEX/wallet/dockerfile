@@ -10,3 +10,13 @@ RUN apt-get update -y && \
     apt install python3 -y &&\
 	apt install python3-pip -y &&\
 	pip3 install -r requirements.txt
+
+RUN mkdir -p /app/wallet
+ADD wallet /app/wallet
+RUN mkdir -p /app/testss
+ADD tests /app/tests
+RUN mkdir -p /app/templates
+ADD templates /app/templates
+COPY app.py /app
+
+EXPOSE 5000
